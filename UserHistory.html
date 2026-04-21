@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediFinder - My History</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="UserHistory.css">
+</head>
+<body>
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <div class="sidebar-inner">
+
+            <div class="sidebar__logo">
+                <div class="sidebar__logo-icon">
+                    <img src="Images/Logo.png" alt="MediFinder Logo">
+                </div>
+                <div class="sidebar__logo-text">
+                    <span class="sidebar__brand">MediFinder</span>
+                    <span class="sidebar__portal">User Portal</span>
+                </div>
+            </div>
+
+            <nav class="sidebar__nav">
+                <a href="UserDashboard.html" class="nav-item">
+                    <i class="fa-solid fa-table-cells-large nav-item__icon"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="UserPharmacySearch.html" class="nav-item">
+                    <i class="fa-solid fa-magnifying-glass nav-item__icon"></i>
+                    <span>Pharmacy Search</span>
+                </a>
+                <a href="UserProfile.html" class="nav-item">
+                    <i class="fa-regular fa-user nav-item__icon"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="UserHistory.html" class="nav-item nav-item--active">
+                    <i class="fa-solid fa-clock-rotate-left nav-item__icon"></i>
+                    <span>My History</span>
+                </a>
+                <a href="UserReminders.html" class="nav-item">
+                    <i class="fa-regular fa-bell nav-item__icon"></i>
+                    <span>Set Reminders</span>
+                </a>
+            </nav>
+
+            <!-- User Profile Footer -->
+            <div class="sidebar__user">
+                <div class="user-avatar">
+                    <img src="Images/ProfileAvatar.jpg" alt="User"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="user-avatar__fallback" style="display:none">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+                <div class="user-meta">
+                    <span class="user-name" id="sidebarUserName">Loading...</span>
+                    <span class="user-email" id="sidebarUserEmail"></span>
+                </div>
+                <a href="#" class="user-logout" id="logoutBtn" title="Log out">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </a>
+            </div>
+
+        </div>
+    </aside>
+
+    <!-- ===================== MAIN ===================== -->
+    <main class="main">
+
+        <!-- Topbar — date filter removed per requirements -->
+        <header class="topbar">
+            <button class="topbar__hamburger" id="hamburgerBtn" aria-label="Toggle sidebar">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="topbar__title">
+                <h1>My History Dashboard</h1>
+                <nav class="breadcrumb" aria-label="breadcrumb">
+                    <a href="UserDashboard.html" class="breadcrumb__link">Dashboard</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span class="breadcrumb__active">History</span>
+                </nav>
+            </div>
+            <!-- Date filter intentionally removed -->
+        </header>
+
+        <!-- Most Frequent Card — populated by JS -->
+        <section class="most-frequent">
+            <div class="most-frequent__body">
+                <span class="most-frequent__label">Most Frequent</span>
+                <h2 class="most-frequent__name" id="mostFrequentName">
+                    <span class="skeleton-text">Loading…</span>
+                </h2>
+            </div>
+            <div class="most-frequent__icon">
+                <i class="fa-solid fa-kit-medical"></i>
+            </div>
+        </section>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+
+            <!-- Left: Search History Panel — "View All" removed per requirements -->
+            <section class="history-panel">
+                <div class="panel__header">
+                    <h2 class="panel__title">Search History</h2>
+                    <!-- "View All" link removed -->
+                </div>
+
+                <div class="history-table__head">
+                    <span>Search Query</span>
+                    <span>Category</span>
+                    <span>Date</span>
+                </div>
+
+                <!-- Rows injected by JS -->
+                <ul class="history-table__body" id="historyTableBody">
+                    <li class="history-row history-row--empty">
+                        <div class="history-row__query">
+                            <div class="med-icon med-icon--indigo">
+                                <i class="fa-solid fa-spinner fa-spin"></i>
+                            </div>
+                            <div class="med-info">
+                                <span class="med-info__name">Loading history…</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Pagination slider injected by JS -->
+                <div id="paginationSlider"></div>
+            </section>
+
+            <!-- Right: Last Search + Prescription Vault -->
+            <aside class="right-col">
+
+                <!-- Last Search — populated by JS -->
+                <div class="info-card">
+                    <div class="info-card__icon">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <div class="info-card__body">
+                        <span class="info-card__label">Last Search</span>
+                        <span class="info-card__value" id="lastSearchValue">Loading…</span>
+                    </div>
+                </div>
+
+                <!-- Prescription Vault -->
+                <div class="vault-card">
+                    <h3 class="vault-card__title">Prescription Vault</h3>
+                    <div class="vault-grid">
+                        <div class="vault-item vault-item--gray">
+                            <i class="fa-solid fa-file-prescription"></i>
+                        </div>
+                        <div class="vault-item vault-item--cream">
+                            <i class="fa-regular fa-file-lines"></i>
+                        </div>
+                        <div class="vault-item vault-item--gray vault-item--sm">
+                            <i class="fa-regular fa-file"></i>
+                        </div>
+                    </div>
+                    <button class="vault-card__btn">View All Files</button>
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <!-- ===================== SCRIPTS ===================== -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="UserHistory.js"></script>
+</body>
+</html>
