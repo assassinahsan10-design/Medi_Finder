@@ -4,6 +4,6 @@
 const { createClient } = window.supabase;
 
 window.supabaseClient = createClient(
-    'https://ktzsshlllyjuzphprzso.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt0enNzaGxsbHlqdXpwaHByenNvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI0MTg4ODksImV4cCI6MjA4Nzk5NDg4OX0.WMoLBWXf0kJ9ebPO6jkIpMY7sFvcL3DRR-KEpY769ic'
+    'https://zvfxmxbavsjzxaohfbmj.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp2ZnhteGJhdnNqenhhb2hmYm1qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU0MDE3NTEsImV4cCI6MjA5MDk3Nzc1MX0.XLm9Uh6xS3bdCfIe7kgbWPo-5R0HlvJ6KGqUaQV6gvk'
 );
