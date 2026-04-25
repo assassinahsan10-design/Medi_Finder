@@ -323,23 +323,20 @@ document.getElementById('saveBtn')?.addEventListener('click', async () => {
     const startDate = document.getElementById('start-date')?.value || null;
 
     /* Read hidden picker value first, fall back to native input */
-    const times = [...document.querySelectorAll('.time-row')].map(row => ({
+const times = [...document.querySelectorAll('.time-row')].map(row => ({
     time: (() => {
         const val = row.querySelector('.time-input-value')?.value
                || row.querySelector('.time-input')?.value
                || '';
         if (!val) return '';
-        // Convert PKT (UTC+5) to UTC by subtracting 5 hours
         const [h, m] = val.split(':').map(Number);
-        const date = new Date();
-        date.setHours(h - 5, m, 0, 0);
-        const utcH = String(date.getUTCHours()).padStart(2, '0');
-        const utcM = String(date.getUTCMinutes()).padStart(2, '0');
-        return `${utcH}:${utcM}`;
+        // PKT is UTC+5, so subtract 5 to get UTC
+        let utcH = h - 5;
+        if (utcH < 0) utcH += 24;
+        return `${String(utcH).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
     })(),
     meal: row.querySelector('.select-input')?.value || ''
 })).filter(t => t.time);
-
     const activeDays = [...document.querySelectorAll('.day-btn--active')]
         .map(b => b.dataset.day).filter(Boolean);
 
